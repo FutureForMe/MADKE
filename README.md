@@ -1,3 +1,9 @@
+<p align="center">
+    <br>
+    <img src="https://github.com/FutureForMe/MADRA/pics/Apollo's_Oracle.jpg" width="355"/>
+    <br>
+</p>
+
 # _Apollo's Oracle:_ Retrieval-Augmented Reasoning in Multi-Agent Debates
 
 
