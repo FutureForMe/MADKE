@@ -1,6 +1,6 @@
 <p align="center">
     <br>
-    <img src="https://github.com/FutureForMe/MADRA/blob/356ce8d0913f904d54491c48c95c7b6aecee7881/pics/Apollo's_Oracle.jpg" width="200"/>
+    <img src="https://github.com/FutureForMe/MADRA/blob/356ce8d0913f904d54491c48c95c7b6aecee7881/pics/Apollo's_Oracle.jpg" width="150"/>
     <br>
 </p>
 
