@@ -1,10 +1,3 @@
-"""
-    Description: 
-    Author: WangHaotian
-    Date: 2024/4/23 11:13
-"""
-import json
-import re
 from tqdm import tqdm
 import warnings
 from importlib import import_module
@@ -12,7 +5,6 @@ from importlib import import_module
 from models.chatgpt_agent import ChatGPT
 from models.gpt4_agent import GPT4
 from parser import get_args
-from utils.utils import print_args
 import prompts.triviaqa_prompt as tqa_prompt
 import prompts.hotpotqa_prompt as hotpot_prompt
 import prompts.fever_prompt as fever_prompt
@@ -20,7 +12,7 @@ import prompts.nq_prompt as nq_prompt
 import prompts.wikimultihopqa_prompt as wikimultihopqa_prompt
 import prompts.medmc_prompt as medmc_prompt
 
-from utils.data_utils import read_json_data, write_json_data
+from utils.data_utils import read_json_data, write_json_data, print_args
 from utils.metrics_calculator import extract_answer, extract_answer_mc
 from utils.prompt_utils import self_choose_evidence, summary_final_answer, judge_consistency
 warnings.filterwarnings("ignore")
@@ -37,21 +29,21 @@ def select_prompt(args):
         return fever_prompt
     elif args.dataset_name == "wikimultihopqa":
         return wikimultihopqa_prompt
-    elif args.dataset_name == "mmlu_med" or args.dataset_name == "medmcqa":
+    elif args.dataset_name == "mmlu_med":
         return medmc_prompt
     else:
         print("Prompt type not exist!")
 
 
 def select_extract_answer(args):
-    if args.dataset_name in ["mmlu_med", "medmcqa"]:
+    if args.dataset_name in ["mmlu_med"]:
         return extract_answer_mc
     else:
         return extract_answer
 
 
-if __name__ == '__main__':
-    # parameters
+if __name__ == "__main__":
+    # Parameters
     args = get_args()
     print_args(args)
 
@@ -59,25 +51,16 @@ if __name__ == '__main__':
 
     test_dataset = read_json_data(args.test_data_path)[59:]
 
-    # 定义智能体
-    # Debaters = [ChatGPT(args, "Agent_" + str(i)) for i in range(args.agent_num)]
-    # Judge = ChatGPT(args, "Judge")
-    # Summarizer = ChatGPT(args, "Summarizer")
-
-    Debaters = [GPT4(args, "Agent_" + str(i)) for i in range(args.agent_num)]
-    Judge = GPT4(args, "Judge")
-    Summarizer = GPT4(args, "Summarizer")
-
-    # select extract_answer
-    # extract_answer = select_extract_answer(args)
+    # Define agent
+    Debaters = [ChatGPT(args, "Agent_" + str(i)) for i in range(args.agent_num)]
+    Judge = ChatGPT(args, "Judge")
+    Summarizer = ChatGPT(args, "Summarizer")
 
     all_dialog_process = []
     for data in tqdm(test_dataset, total=len(test_dataset)):
         question = data["question"]
-        # answer = "({}) {}".format(data["answer_idx"], data["answer"])
         answer = data["answer"]
         wiki_retrieval, google_retrieval = data["wiki_retrieval"], data["google_retrieval"]
-        # textbooks_retrieval = data["textbooks_retrieval"]
 
         if args.evidence_type == "all_evidence":
             evidence = wiki_retrieval[:args.wiki_num] + google_retrieval[:args.google_num]
@@ -85,8 +68,6 @@ if __name__ == '__main__':
             evidence = wiki_retrieval[:args.wiki_num]
         elif args.evidence_type == "only_google_5":
             evidence = google_retrieval[:args.google_num]
-        # elif args.evidence_type == "only_textbooks_5":
-        #     evidence = textbooks_retrieval[:args.textbooks_num]
         else:
             evidence = []
 
