@@ -8,7 +8,7 @@ class ChatGPT(nn.Module):
         super(ChatGPT, self).__init__()
         self.temperature = args.temperature
         self.agent_name = name
-        self.url = "https://{endpoint}.openai.azure.com/openai/deployments/{deployment_id}/chat/completions?api-version=2023-07-01-preview".format(endpoint=args.endpoint, deployment_id = args.deployment_id)
+        self.url = "https://{endpoint}.openai.azure.com/openai/deployments/{deployment_id}/chat/completions?api-version=2023-07-01-preview".format(endpoint=args.endpoint, deployment_id=args.deployment_id)
         self.header = {"Content-Type": "application/json", "api-key": args.api_key}
 
     def generate_answer(self, answer_context):

@@ -1,4 +1,3 @@
-import os
 import argparse
 import warnings
 import numpy as np
@@ -130,12 +129,17 @@ def calculate_acc_c(args, predict_data, eval_data):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation metrics by GPT4")
-    parser.add_argument("--eval_metrics", type=str, default="acc_c", choices=["gpt4_score", "acc_c", "em_f1", "all"])
+    parser.add_argument("--eval_metrics", type=str, default="all", choices=["gpt4_score", "acc_c", "em_f1", "all"])
     parser.add_argument("--dataset_name", type=str, default="triviaqa")
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--round_num", type=int, default=3)
     parser.add_argument("--prediction_path", type=str)
     parser.add_argument("--evaluation_path", type=str)
+
+    parser.add_argument("--endpoint", type=str, required=True)
+    parser.add_argument("--deployment_id", type=str, required=True)
+    parser.add_argument("--api_key", type=str, required=True)
+
     args = parser.parse_args()
 
     if args.prediction_path.endswith(".json"):
