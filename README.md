@@ -1,6 +1,6 @@
 # _Learning to Break:_ Knowledge-Enhanced Reasoning in Multi-Agent Debate System
 
-### [Paper](https://arxiv.org/abs/2312.04854)
+- 🔥 **Update**: This paper has been accepted to Neurocomputing!!  [[Paper](https://www.sciencedirect.com/science/article/pii/S0925231224018344)]
 
 ## Running experiments
 **Preparation**
@@ -40,13 +40,15 @@ python evaluation.py \
 ## Citation
 If you find this work helpful, we kindly request that citations refer to the arXiv version:
 ```bibtex
-@misc{wang2024learningbreak,
-      title={Learning to Break: Knowledge-Enhanced Reasoning in Multi-Agent Debate System}, 
-      author={Haotian Wang and Xiyuan Du and Weijiang Yu and Qianglong Chen and Kun Zhu and Zheng Chu and Lian Yan and Yi Guan},
-      year={2024},
-      eprint={2312.04854},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2312.04854}, 
+@article{WANG2025129063,
+title = {Learning to break: Knowledge-enhanced reasoning in multi-agent debate system},
+journal = {Neurocomputing},
+volume = {618},
+pages = {129063},
+year = {2025},
+issn = {0925-2312},
+doi = {https://doi.org/10.1016/j.neucom.2024.129063},
+url = {https://www.sciencedirect.com/science/article/pii/S0925231224018344},
+author = {Haotian Wang and Xiyuan Du and Weijiang Yu and Qianglong Chen and Kun Zhu and Zheng Chu and Lian Yan and Yi Guan}
 }
  ```
